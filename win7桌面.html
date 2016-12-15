@@ -3,110 +3,98 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
-<style>
-html,body {
-	width: 100%;
-	height: 100%;
-	overflow: hidden;
-	margin: 0;
-	background: url(img/desk.jpg) no-repeat;
-	background-size: 100% 100%;
-}
-input {
-	margin: 0;
-	padding: 0;
-	outline: none;
-}
-.desktop {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	left: 0;
-	top: 0;
-}
-.desktop div {
-	position: absolute;
-	width: 120px;
-	height: 120px;
-}
-.desktop .hover {
-	background: rgba(255,255,255,.3);
-	border-radius: 6px;
-}
-.desktop .active {
-	background: rgba(255,255,255,.5);
-	border-radius: 6px;
-}
-.desktop img {
-	position: absolute;
-	left: 20px;
-	top: 10px;
-	width: 80px;
-	height: 80px;
-	cursor: pointer;
-}
-.desktop span {
-	position: absolute;
-	width: 80px;
-	height: 20px;
-	left: 20px;
-	bottom: 10px;
-	font: 16px/20px "微软雅黑";
-	text-align: center;
-	color: #fff;
-}
-.desktop input {
-	position: absolute;
-	width: 80px;
-	height: 20px;
-	left: 20px;
-	bottom: 10px;
-	display: none;
-	font: 16px/20px "微软雅黑";
-	text-align: center;
-	color: #fff;
-}
-</style>
+<link href="css/index.css" rel="stylesheet" />
+<script src="js/data.js"></script>
+<script src="js/miaov.js"></script>
+<script src="js/class.js"></script>
 </head>
 <body>
 <canvas id="canvas"></canvas>
-<div class="desktop">
-	<div class="icon">
-		<img src="img/cloudDisk.png">
-		<span>云盘</span>
-		<input type="text" />
+<div class="wrap">
+	<div class="desktop">
+		<div id="cloudDisk">
+			<img src="deskImg/cloudDisk.png">
+			<span>云盘</span>
+			<input type="text" />
+		</div>
+		<div id="recycle">
+			<img src="deskImg/recycle.png">
+			<span>回收站</span>
+			<input type="text" />
+		</div>
+		<div id="picture">
+			<img src="deskImg/picture.png">
+			<span>3D照片墙</span>
+			<input type="text" />
+		</div>
+		<div id="music">
+			<img src="deskImg/music.png">
+			<span>音乐</span>
+			<input type="text" />
+		</div>
+		<div id="game">
+			<img src="deskImg/game.png">
+			<span>游戏</span>
+			<input type="text" />
+		</div>
+		<div id="calendar">
+			<img src="deskImg/calendar.png">
+			<span>日历</span>
+			<input type="text" />
+		</div>
+		<div id="folder">
+			<img src="deskImg/folder.png">
+			<span>文件夹</span>
+			<input type="text" />
+		</div>
 	</div>
-	<div class="icon">
-		<img src="img/recycle.png">
-		<span>回收站</span>
-		<input type="text" />
+	<div class="popup"></div>
+	<ul>
+		<li>重命名</li>
+		<li>删除</li>
+	</ul>
+</div>
+<!--照片墙-->
+<div class="pictureWall">
+	<header id="header">
+	<h1><span>画廊幻灯片</span></h1>
+	<strong class="view">view3D</strong>
+	<strong class="picSort">平铺排序</strong>
+	</header>
+	<ul id="imgList"></ul>
+	<div class="btn">
+		<input class="prev" type="button" value="<"/>
+		<input class="next" type="button" value=">"/>
 	</div>
-	<div class="icon">
-		<img src="img/picture.png">
-		<span>照片墙</span>
-		<input type="text" />
+	<div class="cubeWrap">
+		<div class="cube">
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
 	</div>
-	<div class="icon">
-		<img src="img/music.png">
-		<span>音乐</span>
-		<input type="text" />
-	</div>
-	<div class="icon">
-		<img src="img/game.png">
-		<span>游戏</span>
-		<input type="text" />
-	</div>
-	<div class="icon">
-		<img src="img/calendar.png">
-		<span>日历</span>
-		<input type="text" />
-	</div>
-	<div class="icon">
-		<img src="img/folder.png">
-		<span>文件夹</span>
-		<input type="text" />
+</div>
+<!--贪吃蛇-->
+<div id="snake">
+	<div class="info">贪吃蛇</div>
+	<div id="map"></div>
+	<div class="help">
+		<div class="left">
+			<div><span></span>蓝瘦</div>
+			<div><span></span>香菇</div>
+			<div id="start"><span></span>神器</div>
+			<div id="close"><span></span>刹车</div>
+		</div>
+		<div class="right">
+			<span>战绩:<strong id="score"> 0 </strong>分</span>
+		</div>
 	</div>
 </div>
 </body>
 <script src="js/index.js"></script>
+<script src="js/snake.js"></script>
+<script src="js/snow.js"></script>
 </html>
