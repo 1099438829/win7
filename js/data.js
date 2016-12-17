@@ -1,5 +1,9 @@
 var rightList = [
 	{
+		'name': 'create',
+		'title': '新建文件夹'
+	},
+	{
 		'name': 'look',
 		'title':'查看',
 		child: [
@@ -31,10 +35,6 @@ var rightList = [
 	{
 		'name': 'fast',
 		'title': '创建快捷方式'
-	},
-	{
-		'name': 'create',
-		'title': '新建文件夹'
 	},
 	{
 		'name': 'screen',

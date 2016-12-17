@@ -121,6 +121,7 @@ li {
 	padding: 2px;
 	border-radius: 2px;
 	display: none;
+	z-index: 2;
 }
 
 .list ul{
@@ -166,6 +167,7 @@ li {
 	height: 90%;
 	overflow: hidden;
 	background: -webkit-linear-gradient(left top,skyblue 0%,lightblue 50%,skyblue 100%);
+	background: -moz-linear-gradient(left top,skyblue 0%,lightblue 50%,skyblue 100%);
 	opacity: 0;
 	display: none;
 	z-index: 9999;
@@ -355,7 +357,7 @@ li {
 	height: 350px;
 	transform-origin: center center -175px;
 	background-size: 350px 350px;
-	background-image: url(pictures/img/21.jpg);
+	background-image: url(../img/21.jpg);
 	opacity: .8;
 }
 .cube div:nth-of-type(1) {
