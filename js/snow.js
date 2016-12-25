@@ -7,14 +7,11 @@ var arr = [];
 
 var W,H;
 
-W = c.width = window.innerWidth;
-H = c.height = window.innerHeight;
-
-
 window.onresize = function () {
 	W = c.width = window.innerWidth;
 	H = c.height = window.innerHeight;
 };
+window.onresize();
 
 //随机函数的封装
 function rad(n,m) {
@@ -24,15 +21,21 @@ function d(n) {
 	return n*Math.PI/180;
 }
 
+for ( var i = 0; i < 120; i++ ) {
+	arr.push({
+		'left': rad(0,W),
+		'top': rad(0,H),
+		'deg': rad(-10,10),//控制雪花位置
+		'scale': rad(2,10)  //控制雪花大小
+	});
+}
+
 var anima;
 ~function (){
 	drawSnow();
 	anima = window.requestAnimationFrame(arguments.callee);
 }();
 
-
-
-//window.cancelAnimationFrame(anima);
 
 //页面生成雪花
 function drawSnow() {
@@ -41,7 +44,7 @@ function drawSnow() {
 	cxt.save();
 	
 	for ( var i = 0; i < arr.length; i++ ) {
-		var h = 0.5*arr[i].scale;//雪花下落的速度
+		var h = 0.3*arr[i].scale;//雪花下落的速度
 		arr[i].left = arr[i].left + Math.tan(d(arr[i].deg))*h;
 		arr[i].top = arr[i].top + h;
 		
@@ -67,18 +70,16 @@ function drawSnow() {
 }
 
 function next() {
-	setTimeout(function () {
-		if ( arr.length < 100 ) {
-			for ( var i = 0; i < 20; i++ ) {
-				arr.push({
-					'left': rad(0,W),
-					'top': 0,
-					'deg': rad(-10,10),
-					'scale': rad(2,10)
-				});
-			}
+	if ( arr.length < 120 ) {
+		for ( var i = 0; i < 20; i++ ) {
+			arr.push({
+				'left': rad(0,W),
+				'top': 0,
+				'deg': rad(-10,10),
+				'scale': rad(2,10)
+			});
 		}
-		next();
-	},Math.random()*200 + 300);
+	}
+	requestAnimationFrame(next);
 }
-next();
+requestAnimationFrame(next);

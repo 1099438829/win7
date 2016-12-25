@@ -15,7 +15,7 @@ img {
 	border: none;
 	vertical-align: top;
 }
-h2,h1 {
+h2,h1,h3,p {
 	margin: 0;
 }
 ul {
@@ -30,6 +30,14 @@ input {
 }
 li {
 	vertical-align: top;
+}
+.clear {
+	zoom: 1;
+}
+.clear:after {
+	content: '';
+	display: block;
+	clear: both;
 }
 
 
@@ -402,6 +410,7 @@ li {
 	margin: 0 auto;
 	background: #E8FFFB;
 	display: none;
+	z-index: 333;
 }
 .info {
 	height: 60px;
@@ -468,4 +477,265 @@ li {
 	border: 1px solid #fbe2f9;
 	background: blue;
 	margin-right: 5px;
+}
+
+
+/*音乐播放器*/
+.musicWrap {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background: rgba(0,0,0,.5);
+	display: none;
+	z-index: 999;
+	transition: 1s;
+	overflow: hidden;
+}
+#musicWrap {
+	width: 240px;
+	height: 40px;
+	left: 43%;
+}
+#musicWrap .header {
+	height: 40px;
+}
+#musicWrap .musicName {
+	text-align: right;
+	height: 20px;
+}
+#musicWrap .musicArtist {
+	height: 20px;
+	text-align: right;
+}
+.musicWrap .header {
+	width: 100%;
+	height: 6%;
+	position: relative;
+}
+.header span {
+	position: absolute;
+	top: 0;
+	width: 30px;
+	height: 30px;
+	top: 5px;
+	cursor: pointer;
+}
+.header .min {
+	left: 10px;
+	background: url(../deskImg/min.png) no-repeat;
+	background-size: 30px 30px;
+}
+.header .max {
+	left: 50px;
+	background: url(../deskImg/max.png) no-repeat;
+	background-size: 30px 30px;
+}
+.header .close {
+	left: 90px;
+	background: url(../deskImg/close.png) no-repeat;
+	background-size: 30px 30px;
+}
+.header div {
+	text-align: center;
+}
+.header .musicName {
+	font: 16px/20px "微软雅黑";
+	color: yellow;
+}
+.header .musicArtist {
+	font: 14px/20px "微软雅黑";
+	color: #fff;
+}
+.middle {
+	width: 100%;
+	height: 500px;
+	text-align: center;
+}
+.middle p {
+	width: 100%;
+	font: 20px/30px "微软雅黑";
+	color: #fff;
+	margin-top: -80px;
+	margin-bottom: 90px;
+}
+#canvas {
+	text-align: center;
+}
+.musicWrap .bottom {
+	height: 120px;
+}
+.bottom .process {
+	width: 350px;
+	height: 20px;
+	margin: 0 auto;
+	text-align: center;
+	position: relative;
+}
+.process span {
+	position: absolute;
+	top: 0;
+	font: 12px/20px "微软雅黑";
+	height: 20px;
+}
+.process .nowTime {
+	left: 12px;
+}
+.process .totalTime {
+	right: 12px;
+}
+.process .bar {
+	display: inline-block;
+	width: 240px;
+	height: 20px;
+	position: relative;
+	cursor: pointer;
+}
+.curnow {
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 2px;
+	margin-top: 9px;
+	background: red;
+}
+.curnow .dotBtn {
+	position: absolute;
+	left: -10px;
+	top: -9px;
+	width: 20px;
+	height: 20px;
+	background: url(../deskImg/process_btn.png) no-repeat;
+	background-size: 20px 20px;
+	z-index: 999;
+}
+.bar .length {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 2px;
+	margin-top: 9px;
+	background: #615D5C;
+}
+.bottom .control {
+	width: 350px;
+	height: 120px;
+	margin: 0 auto;
+}
+.control span {
+	display: inline-block;
+	margin-right: 15px;
+	cursor: pointer;
+}
+.control .loop {
+	width: 36px;
+	height: 36px;
+	background: url(../deskImg/play_icn_loop.png) no-repeat;
+}
+.control .pre {
+	width: 50px;
+	height: 50px;
+	background: url(../deskImg/play_btn_prev.png) no-repeat;
+}
+.control .next {
+	width: 50px;
+	height: 50px;
+	background: url(../deskImg/play_btn_next.png) no-repeat;
+}
+.control .play {
+	width: 70px;
+	height: 70px;
+	background: url(../deskImg/play_rdi_btn_play.png) no-repeat;
+}
+.control .list {
+	width: 36px;
+	height: 36px;
+	background: url(../deskImg/play_icn_src.png) no-repeat;
+}
+
+.playList {
+	position: absolute;
+	left: 0;
+	bottom: -360px;
+	width: 100%;
+	height: 360px;
+	background: rgba(0,0,0,.5);
+	overflow: hidden;
+	transition: 1s;
+}
+.playList h2 {
+	width: 100%;
+	height: 65px;
+	background: url(../deskImg/musicH2.png) no-repeat 20px 10px;
+	background-size: 40px 40px;
+}
+.playList h2 span {
+	float: left;
+	font: bold 24px/65px "宋体";
+	color: #fff;
+	text-indent: 3em;
+}
+.playList h2 strong {
+	position: absolute;
+	font: 30px/32px "微软雅黑";
+	right: 20px;
+	top: 10px;
+	width: 40px;
+	height: 40px;
+	transition: .6s;
+	color: #fff;
+	text-align: center;
+	cursor: pointer;
+}
+.playList .listWrap {
+	position: absolute;
+	left: 0;
+	top: 65px;
+	width: 100%;
+	height: 295px;
+	overflow: hidden;
+}
+.playList ul {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+}
+.playList li {
+	border-top: 1px solid #fff;
+	font: 16px/40px "微软雅黑";
+	cursor: pointer;
+	height: 41px;
+	padding-left: 1.5em;
+}
+.playList .active {
+	background: url(../deskImg/song_play_icon.png) no-repeat;
+	background-position: 0 50%;
+	padding-left: 2em;
+}
+.playList li span:nth-of-type(1) {
+	color: yellow;
+}
+.playList li span:nth-of-type(2) {
+	color: #fff;
+}
+
+
+.playList .scroll {
+	position: absolute;
+	right: 2px;
+	top: 65px;
+	height: 295px;
+	width: 10px;
+}
+.scroll .roll {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100px;
+	width: 10px;
+	border-radius: 10px;
+	background: rgba(255,255,255,.3);
 }

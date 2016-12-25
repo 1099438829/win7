@@ -44,8 +44,9 @@
 	clearInterval(snakeTimer);
 	creatMap(mapX,mapY);
 	startGame.onclick = start;
+	//游戏关闭
 	closeGame.onclick = function () {
-		
+		startGame.onclick = start;
 		clearInterval(snakeTimer);
 		skateTimer.forEach(function (item) {
 			clearTimeout(item);

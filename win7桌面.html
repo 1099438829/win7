@@ -96,9 +96,57 @@
 		</div>
 	</div>
 </div>
+<!--音乐播放器-->
+<div class="musicWrap">
+	<div class="header">
+		<span class="min"></span>
+		<div class="musicName">不潮不用花钱</div>
+		<div class="musicArtist">林俊杰</div>
+		<span class="close"></span>
+		<span class="max"></span>
+	</div>
+	<div class="middle">
+		<canvas id="mCanvas"></canvas>
+		<p class="lyric">逍遥此身君子意</p>
+		<p class="lyric">一壶温酒向长空</p>
+	</div>
+	<div class="bottom">
+		<div class="process">
+			<span class="nowTime">00:00</span>
+			<div class="bar">
+				<div class="length"></div>
+				<div class="curnow">
+					<span class="dotBtn"></span>
+				</div>
+			</div>
+			<span class="totalTime">00:00</span>
+		</div>
+		<div class="control">
+			<span class="loop"></span>
+			<span class="pre"></span>
+			<span class="play"></span>
+			<span class="next"></span>
+			<span class="list"></span>
+		</div>
+	</div>
+	<div style="display: none">
+		<audio id="audio" src="music/林俊杰 - 不潮不用花钱.mp3"></audio>
+	</div>
+	<div class="playList">
+		<h2><span>播放列表</span><strong>×</strong></h2>
+		<div class="listWrap">
+			<ul class="musicList"></ul>
+		</div>
+		<div class="scroll">
+			<div class="roll"></div>
+		</div>
+	</div>
+</div>
+
 </body>
 <script src="js/snow.js"></script>
 <script src="js/index.js"></script>
 <script src="js/snake.js"></script>
+<script src="js/music.js"></script>
 
 </html>

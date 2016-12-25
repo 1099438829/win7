@@ -34,7 +34,6 @@
 		this.createMent();//生成popup页面的内容
 		this.ulsC();//list里的点击事件
 		this.drag();//拖拽
-		
 		for ( var i = 0; i < this.ps.length; i++ ) {
 			this.arr.push(this.ps[i].innerHTML);
 		}
@@ -42,8 +41,8 @@
 	//存储所有文件夹的名字 以及文件夹的位置
 	pos.prototype.ergodic = function () {
 		for ( var i = 0; i < this.divs.length; i++ ) {
-			this.divs[i].style.top = 20 + i%4*160 + 'px';
-			this.divs[i].style.left = 20 + parseInt(i/4)*130 + 'px';	
+			this.divs[i].style.top = i%4*160 + 'px';
+			this.divs[i].style.left = parseInt(i/4)*130 + 'px';	
 		}
 	};
 	
@@ -316,8 +315,8 @@
 		var span = document.createElement('span');
 		var inputs = document.createElement('input');
 		
-		div.style.top = 20 + divL%4*160 + 'px';
-		div.style.left = 20 + parseInt(divL/4)*130 + 'px';
+		div.style.top = divL%4*160 + 'px';
+		div.style.left = parseInt(divL/4)*130 + 'px';
 		div.index = divL;
 		
 		
@@ -387,6 +386,12 @@
 	};
 	
 	pos.prototype.divDown = function (ev,that) {
+		
+		for ( var i = 0; i < this.divs.length; i++ ) {
+			if ( this.divs[i].style.transition != '' ) {
+				return;
+			}
+		}
 		
 		var _this = this;
 		this.disX = ev.pageX - that.offsetLeft;
@@ -458,14 +463,17 @@
 		document.removeEventListener('mousemove',move);
 		document.removeEventListener('mouseup',up);
 		
-		console.log(this.posIndex);
 		
 		var _this = this;
 		var nowIndex = that.index;
-		
-		if ( this.posIndex != -1 && this.posIndex != that.index ) {
+		// && this.posIndex != that.index 
+		if ( this.posIndex != -1 ) {
 			
-			if ( this.divs[this.posIndex].id == 'recycle' ) {
+//			if ( this.posIndex === that.index ) {
+//				this.posIndex = -1;
+//			}
+			
+			if ( this.divs[this.posIndex].id == 'recycle' && that != this.divs[this.posIndex] ) {
 				this.deleteElement(that);
 				this.posIndex = -1;
 				return;
@@ -481,6 +489,8 @@
 
 			var divsArray = Array.from(this.divs);
 			
+			
+			//运动结束的时候 交换节点 重新渲染页面 然后重置参数
 			setTimeout(function () {
 				var temp = that;
 				divsArray[that.index] = divsArray[_this.posIndex];
@@ -500,15 +510,9 @@
 				for ( var i = 0; i < _this.divs.length; i++ ) {
 					_this.divs[i].style.transition = '';
 				}
-				
 				_this.posIndex = -1;
 			},500);
-		} else if (this.posIndex == that.index) {
-			this.arrPos[that.index] = [that.offsetLeft,that.offsetTop]; 
-			for ( var i = 0; i < _this.divs.length; i++ ) {
-				_this.divs[i].style.zIndex = 1;
-			}
-			_this.posIndex = -1
+			
 		}
 			
 	}
@@ -517,14 +521,7 @@
 	p.init();
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	//页面每个工具功能的打开
 	function tool() {
 		this.pictureWall = document.querySelector('.pictureWall');
@@ -532,10 +529,13 @@
 		this.game = document.getElementById('game');
 		this.snake = document.getElementById('snake');
 		this.recycle = document.getElementById('recycle');
+		this.musicWrap = document.querySelector('.musicWrap');
+		this.music = document.getElementById('music');
 	}
 	tool.prototype.init = function () {
 		this.show();
 		this.snakeshow();
+		this.musicshow();
 	};
 	//点击图片  显示页面
 	tool.prototype.show = function () {
@@ -562,6 +562,14 @@
 			}
 			_this.snake.style.display = 'block';
 			mTween(_this.snake,{top: 30},2000,'bounceOut');
+		});
+	};
+	
+	//双击音乐  让音乐界面显示出来
+	tool.prototype.musicshow = function () {
+		var _this = this;
+		this.music.addEventListener('dblclick',function () {
+			_this.musicWrap.style.display = 'block';
 		});
 	};
 	

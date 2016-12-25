@@ -39,7 +39,9 @@ var liH = 100;
 //---------------------------------------------------------
 
 set3D();
-rand3D();
+setTimeout(function () {
+	rand3D();
+},3000)
 strong3d();
 enterLi();
 dblLi();
